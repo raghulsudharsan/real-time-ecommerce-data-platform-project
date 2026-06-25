@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual Environment
+venv/
+.venv/
+
+# Environment Variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Docker
+*.pid
+
+# Airflow
+airflow/logs/
+airflow/airflow.db
+
+# dbt
+target/
+dbt_packages/
+
+# PostgreSQL
+postgres-data/
+
+# Redis
+redis-data/
