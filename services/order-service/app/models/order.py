@@ -6,6 +6,10 @@ from sqlalchemy import Enum as SQLEnum, Numeric
 from sqlalchemy.orm import Mapped, mapped_column,relationship
 
 from app.models.base import BaseModel
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.models.order_item import OrderItem
 
 
 class OrderStatus(str, Enum):
