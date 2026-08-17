@@ -8,6 +8,8 @@ from app.repositories.order_repository import OrderRepository
 from app.schemas.order import OrderCreate, OrderStatusUpdate
 from app.services.order_service import OrderService
 from app.schemas.order import OrderResponse
+from app.api.dependencies import get_current_user
+from app.api.dependencies import require_admin
 
 router = APIRouter(
     prefix="/orders",
@@ -19,6 +21,7 @@ router = APIRouter(
 def create_order(
     request: OrderCreate,
     db: Session = Depends(get_db),
+    current_user: dict = Depends(get_current_user)
 ):
     repository = OrderRepository()
     service = OrderService(repository)
@@ -26,6 +29,7 @@ def create_order(
     return service.create_order(
         db=db,
         request=request,
+        customer_id=current_user["sub"]
     )
 
 @router.get("/{order_id}")
@@ -52,6 +56,7 @@ def update_order_status(
     order_id: UUID,
     request: OrderStatusUpdate,
     db: Session = Depends(get_db),
+    current_user: dict = Depends(require_admin),
 ):
     repository = OrderRepository()
     service = OrderService(repository=repository)

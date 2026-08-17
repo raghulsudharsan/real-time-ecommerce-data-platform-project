@@ -10,7 +10,6 @@ class OrderItemCreate(BaseModel):
 
 
 class OrderCreate(BaseModel):
-    customer_id: UUID
     items: list[OrderItemCreate]  = Field(min_length=1)
 
 class OrderStatusUpdate(BaseModel):

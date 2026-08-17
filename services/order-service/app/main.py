@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.api.routes.order_router import router as order_router
+from app.api.routes.auth_router import router as auth_router
 from app.db.init_db import init_db
 
 app = FastAPI(
@@ -16,3 +17,4 @@ def root():
     }
 
 app.include_router(order_router)
+app.include_router(auth_router)

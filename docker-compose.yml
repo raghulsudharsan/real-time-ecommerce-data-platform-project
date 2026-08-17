@@ -103,6 +103,24 @@ services:
       --host 0.0.0.0
       --port 8000
       --reload
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+      dockerfile: Dockerfile
+    image: ecommerce-api-gateway
+    container_name: api-gateway
+    ports:
+      - "8002:8000"
+    volumes:
+      - ./services/api-gateway:/app
+    depends_on:
+      - order-service
+      - product-service
+    command: >
+      uvicorn app.main:app
+      --host 0.0.0.0
+      --port 8000
+      --reload
 volumes:
   postgres_data:
   redis-data:
